@@ -1,44 +1,66 @@
-
-
-
-
 class Node(object):
-	def __init__(self, data = None, left = None, right = None):
+	def __init__(self, data = None):
 		self.data = data
-		self.left = left
-		self.right = right
+		self.left = None
+		self.right = None
 
 	def insert(self, data):
-		if self.value == data:
-			return False
-		elif self.value > data:
-			if self.leftChild:
-				return self.leftChild.insert(data)
+		
+		if self.data > data:
+			if self.left:
+				self.left.insert(data)
 			else:
-				self.leftChild = Node(data)
-				return True
+				self.left = Node(data)
 
+		elif self.data < data:
+			if self.right:
+				self.right.insert(data)
+			else:
+				self.right = Node(data)
 		else:
-			if self.rightChild:
-				return self.rightChild.insert(data)
-			else:
-				self.rightChild = Node(data)
-				return True
+			self.data == data
 
+	def inorder(self):
+		if self:
+			if self.left:
+				self.left.inorder()
+
+			print(str(self.data), " ", end="")
+
+			if self.right:
+				self.right.inorder()
 
 
 class BinarySearchTree(object):
-	def __init__(self, root = None):
-		self.root = root
+	def __init__(self):
+		self.root = None
 
 	def get_root(self):
-		return self.root
+		 self.root
 
-	def insert(self, item):
+	def build_tree(self, list):
+		for x in list:
+			self.insert(x)
+
+
+	def insert(self, data):
 		if self.root:
-			return self.root.insert(data)
+			 self.root.insert(data)
 		else:
 			self.root = Node(data)
-			return True
 
-	def search(self, node, item):
+	def inorder(self):
+		self.root.inorder()
+
+
+	
+
+list = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+bst = BinarySearchTree()
+
+bst.build_tree(list)
+bst.inorder()
+print()
+bst.insert(500)
+bst.inorder()
+print()
