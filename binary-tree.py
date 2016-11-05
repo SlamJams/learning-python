@@ -2,8 +2,6 @@ import queue
 
 class Node(object):
 
-	
-
 	def __init__(self, data = None):
 		self.data = data
 		self.left = None
@@ -51,6 +49,23 @@ class Node(object):
 				if val.right:
 					que.put(val.right)
 
+	def DFSbinary(self,value):
+		stack = [self]
+
+		while len(stack) > 0:
+			if stack[0].data == value:
+				print(stack[0].value)
+			else:
+				print(str(stack[0].data), " ", end="")
+				temp = stack.pop(0)
+				if temp.right:
+					stack.insert(0, temp.right)
+				if temp.left:
+					stack.insert(0, temp.left)
+
+
+
+
 class BinarySearchTree(object):
 	def __init__(self):
 		self.root = None
@@ -75,6 +90,9 @@ class BinarySearchTree(object):
 	def BFS(self, value):
 		self.root.BFSbinary(value)
 
+	def DFS(self, value):
+		self.root.DFSbinary(value)
+
 	
 
 list = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -88,3 +106,6 @@ bst.inorder()
 print()
 
 bst.BFS(2)
+print()
+
+bst.DFS(2)
