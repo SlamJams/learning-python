@@ -1,4 +1,9 @@
+import queue
+
 class Node(object):
+
+	
+
 	def __init__(self, data = None):
 		self.data = data
 		self.left = None
@@ -30,6 +35,21 @@ class Node(object):
 			if self.right:
 				self.right.inorder()
 
+	def BFSbinary(self, value):
+		que = queue.Queue()
+		que.put(self)
+
+		while que.qsize() > 0:
+			val = que.get()
+
+			if val.data == value:
+				print(val.data)
+			else:
+				print(str(val.data), " ", end="")
+				if val.left:
+					que.put(val.left)
+				if val.right:
+					que.put(val.right)
 
 class BinarySearchTree(object):
 	def __init__(self):
@@ -52,6 +72,8 @@ class BinarySearchTree(object):
 	def inorder(self):
 		self.root.inorder()
 
+	def BFS(self, value):
+		self.root.BFSbinary(value)
 
 	
 
@@ -64,3 +86,5 @@ print()
 bst.insert(500)
 bst.inorder()
 print()
+
+bst.BFS(2)
